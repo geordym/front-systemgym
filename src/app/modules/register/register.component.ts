@@ -43,21 +43,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     async registerByAuth() {
         if (this.registerForm.valid) {
             this.isAuthLoading = true;
-            await this.appService.registerWithEmail(
-                this.registerForm.value.email,
-                this.registerForm.value.password
-            );
+
             this.isAuthLoading = false;
         } else {
             this.toastr.error('Form is not valid!');
         }
     }
 
-    async registerByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.signInByGoogle();
-        this.isGoogleLoading = false;
-    }
 
     ngOnDestroy() {
         this.renderer.removeClass(

@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     @HostBinding('class') class = 'login-box';
     public loginForm: UntypedFormGroup;
     public isAuthLoading = false;
-    public isGoogleLoading = false;
-    public isFacebookLoading = false;
+
 
     constructor(
         private renderer: Renderer2,
@@ -52,11 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
     }
 
-    async loginByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.signInByGoogle();
-        this.isGoogleLoading = false;
-    }
+
 
     ngOnDestroy() {
         this.renderer.removeClass(

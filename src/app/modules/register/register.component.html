@@ -73,25 +73,7 @@
             </div>
         </form>
 
-        <div class="social-auth-links text-center">
-            <pf-button
-                class="mb-2"
-                [loading]="isFacebookLoading"
-                [disabled]="true || isAuthLoading || isGoogleLoading"
-            >
-                <i class="fab fa-facebook mr-2"></i>
-                Sign up using Facebook
-            </pf-button>
-            <pf-button
-                [loading]="isGoogleLoading"
-                [disabled]="isAuthLoading || isFacebookLoading"
-                (click)="registerByGoogle()"
-                variant="danger"
-            >
-                <i class="fab fa-google mr-2"></i>
-                Sign up using Google+
-            </pf-button>
-        </div>
+
 
         <a [routerLink]="['/login']" class="text-center">
             I already have a membership</a

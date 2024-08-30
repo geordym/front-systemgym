@@ -4,14 +4,11 @@ import {ToastrService} from 'ngx-toastr';
 import {sleep} from '@/utils/helpers';
 
 import {createUserWithEmailAndPassword} from '@firebase/auth';
-import {
-    User,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup
-} from 'firebase/auth';
+
 import {GoogleAuthProvider} from 'firebase/auth';
 import {firebaseAuth} from '@/firebase';
+import { AuthService } from './auth.service';
+import { User } from '@/interfaces/User';
 
 const provider = new GoogleAuthProvider();
 
@@ -23,80 +20,33 @@ export class AppService {
 
     constructor(
         private router: Router,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+     private authService: AuthService
     ) {
-        onAuthStateChanged(
-            firebaseAuth,
-            (user) => {
-                if (user) {
-                    this.user = user;
-                } else {
-                    this.user = undefined;
-                }
-            },
-            (e) => {
-                this.user = undefined;
-            }
-        );
+
     }
 
-    async registerWithEmail(email: string, password: string) {
-        try {
-            const result = await createUserWithEmailAndPassword(
-                firebaseAuth,
-                email,
-                password
-            );
-            this.user = result.user;
-            this.router.navigate(['/']);
-            return result;
-        } catch (error) {
-            this.toastr.error(error.message);
+
+
+
+
+    loginWithEmail(email: string, password: string) {
+      this.authService.loginWithEmail(email, password).subscribe({
+        next: (result: any) => {
+          // Maneja el resultado exitoso
+          console.log(result);
+          this.user = result.user;
+          this.router.navigate(['/']);
+        },
+        error: (error: any) => {
+          // Maneja los errores
+          this.toastr.error(error);
         }
+      });
     }
 
-    async loginWithEmail(email: string, password: string) {
-        try {
-            const result = await signInWithEmailAndPassword(
-                firebaseAuth,
-                email,
-                password
-            );
-            this.user = result.user;
-            this.router.navigate(['/']);
 
-            return result;
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
 
-    async signInByGoogle() {
-        try {
-            const result = await signInWithPopup(firebaseAuth, provider);
-            this.user = result.user;
-            this.router.navigate(['/']);
-
-            return result;
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
-    }
-
-    async getProfile() {
-        try {
-            await sleep(500);
-            const user = firebaseAuth.currentUser;
-            if (user) {
-                this.user = user;
-            } else {
-                this.logout();
-            }
-        } catch (error) {
-            this.logout();
-            this.toastr.error(error.message);
-        }
-    }
 
     async logout() {
         await firebaseAuth.signOut();

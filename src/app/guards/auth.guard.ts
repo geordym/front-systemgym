@@ -7,8 +7,9 @@ import {
     UrlTree,
     Router
 } from '@angular/router';
-import {Observable} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {AppService} from '@services/app.service';
+import { AuthService } from '@services/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,8 @@ import {AppService} from '@services/app.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
     constructor(
         private router: Router,
-        private appService: AppService
+        private appService: AppService,
+        private authService: AuthService
     ) {}
 
     canActivate(
@@ -41,16 +43,25 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(next, state);
     }
 
-    async getProfile() {
-        if (this.appService.user) {
+    getProfile(): Observable<boolean> {
+      return this.authService.getProfile().pipe(
+        map(user => {
+          if (user) {
             return true;
-        }
-
-        try {
-            await this.appService.getProfile();
-            return true;
-        } catch (error) {
+          } else {
+            this.authService.logout();
+            this.router.navigate(['/login']);
             return false;
-        }
+          }
+        }),
+        catchError(error => {
+          this.authService.logout();
+          this.router.navigate(['/login']);
+          return of(false);
+        })
+      );
+
     }
+
+
 }

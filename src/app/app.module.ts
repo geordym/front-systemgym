@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HttpClientModule, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
@@ -84,6 +84,7 @@ registerLocaleData(localeEn, 'en-EN');
     ],
     bootstrap: [AppComponent],
     imports: [
+      HttpClientModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,
