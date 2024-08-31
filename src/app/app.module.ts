@@ -46,6 +46,14 @@ import {ContentHeaderComponent} from './components/content-header/content-header
 import {LoadingComponent} from './components/loading/loading.component';
 import {OverlayLoadingComponent} from './components/overlay-loading/overlay-loading.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { InscripcionComponent } from './pages/inscripcion/inscripcion.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { MembresiasComponent } from './pages/membresias/membresias.component';
+import { SuscripcionComponent } from './pages/suscripcion/suscripcion.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
+import { TarifasComponent } from './pages/tarifas/tarifas.component';
+import { MembresiasCrearComponent } from './pages/membresias-crear/membresias-crear.component';
+import { PagosPagarComponent } from './pages/pagos-pagar/pagos-pagar.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -80,7 +88,15 @@ registerLocaleData(localeEn, 'en-EN');
         SmallBoxComponent,
         ContentHeaderComponent,
         LoadingComponent,
-        OverlayLoadingComponent
+        OverlayLoadingComponent,
+        InscripcionComponent,
+        ClientesComponent,
+        MembresiasComponent,
+        SuscripcionComponent,
+        PagosComponent,
+        TarifasComponent,
+        MembresiasCrearComponent,
+        PagosPagarComponent
     ],
     bootstrap: [AppComponent],
     imports: [

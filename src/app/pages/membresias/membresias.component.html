@@ -1,0 +1,67 @@
+
+
+
+<div class="container mt-4">
+
+
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Listado de membresías</h1>
+    <button (click)="handleClick()" class="btn btn-primary">Ir a Membresías Crear</button>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Listado de membresías</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" (click)="collapse()" title="Collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" (click)="remove()" title="Remove">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Membresía ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Periodicidad</th>
+              <th>Accesos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let membresia of membresias">
+              <td>{{ membresia.id }}</td>
+              <td>{{ membresia.nombre }}</td>
+              <td>{{ membresia.precio }}</td>
+              <td>{{ membresia.periodicidad }}</td>
+              <td>{{ membresia.accesos }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card-footer">Footer</div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,54 @@
+<div>
+  <app-content-header title="Listado de clientes inscritos"></app-content-header>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Listado de clientes inscritos</h3>
+          <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Cliente ID</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Teléfono</th>
+                  <th>Dirección</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let client of clients" [attr.data-id]="client.client_id">
+                  <td>{{ client.client_id }}</td>
+                  <td>{{ client.primer_nombre }} {{ client.segundo_nombre }}</td>
+                  <td>{{ client.primer_apellido }} {{ client.segundo_apellido }}</td>
+                  <td>{{ client.telefono_personal }}</td>
+                  <td>{{ client.direccion_residencia }}</td>
+                  <td>
+                    <a [routerLink]="['/client', client.client_id]" class="btn btn-info">Ver Detalles</a>
+                    <a [href]="'/factura/' + client.client_id" target="_blank" class="btn btn-primary">Descargar Factura</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-footer">Footer</div>
+      </div>
+    </div>
+  </section>
+</div>

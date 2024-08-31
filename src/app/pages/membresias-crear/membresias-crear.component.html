@@ -1,0 +1,94 @@
+<div>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Crear Membresía</h3>
+          <button (click)="handleClick()">
+            Ver listado de membresías
+          </button>
+          <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+          <div class="card-tools">
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="collapse"
+              data-toggle="tooltip"
+              title="Collapse"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-widget="remove"
+              data-toggle="tooltip"
+              title="Remove"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="membresiaForm" (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                formControlName="nombre"
+                placeholder="Ingrese el nombre"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="precio">Precio</label>
+              <input
+                type="number"
+                step="0.01"
+                class="form-control"
+                id="precio"
+                formControlName="precio"
+                placeholder="Ingrese el precio"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="periodicidad">Periodicidad</label>
+              <select
+                class="form-control"
+                id="periodicidad"
+                formControlName="periodicidad"
+              >
+                <option value="">Seleccione una opción</option>
+                <option value="mensual">Mensual</option>
+                <option value="trimestral">Trimestral</option>
+                <option value="anual">Anual</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="accesos">Accesos</label>
+              <input
+                type="text"
+                class="form-control"
+                id="accesos"
+                formControlName="accesos"
+                placeholder="Ingrese los accesos"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">
+              Crear
+            </button>
+          </form>
+        </div>
+
+        <div class="card-footer">Footer</div>
+      </div>
+    </div>
+  </section>
+</div>

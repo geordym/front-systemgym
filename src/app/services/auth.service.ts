@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 
@@ -16,7 +17,7 @@ export class AuthService {
 
   private currentUser: any = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   loginWithEmail(username: string, password: string): Observable<any> {
     const endpoint = `${this.apiUrl}/api/auth/login`;
@@ -44,6 +45,10 @@ export class AuthService {
     );
   }
 
+  getAuthToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
   getProfile(): Observable<any> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -68,7 +73,11 @@ export class AuthService {
   logout() {
     this.currentUser = null;
     localStorage.removeItem('authToken');
+
+    // Redirige al usuario a la página de inicio de sesión
+    this.router.navigate(['/login']);
   }
+
 
   get user() {
     return this.currentUser;

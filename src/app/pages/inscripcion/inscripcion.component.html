@@ -1,0 +1,127 @@
+<div>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Inscripción de clientes</h3>
+      <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="inscripcionForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="primer_nombre">Primer Nombre</label>
+            <input type="text" class="form-control" id="primer_nombre" formControlName="primer_nombre" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="segundo_nombre">Segundo Nombre</label>
+            <input type="text" class="form-control" id="segundo_nombre" formControlName="segundo_nombre" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="primer_apellido">Primer Apellido</label>
+            <input type="text" class="form-control" id="primer_apellido" formControlName="primer_apellido" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="segundo_apellido">Segundo Apellido</label>
+            <input type="text" class="form-control" id="segundo_apellido" formControlName="segundo_apellido" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="fecha_nacimiento" formControlName="fecha_nacimiento" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="direccion_residencia">Dirección de residencia</label>
+            <input type="text" class="form-control" id="direccion_residencia" formControlName="direccion_residencia" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="telefono_personal">Teléfono Personal</label>
+            <input type="number" class="form-control" id="telefono_personal" formControlName="telefono_personal" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="telefono_contacto_emergencia">Teléfono de contacto de emergencia</label>
+            <input type="number" class="form-control" id="telefono_contacto_emergencia" formControlName="telefono_contacto_emergencia" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email" />
+          </div>
+        </div>
+
+        <div class="text mt-2">
+          <h2>Información médica</h2>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lesiones">Lesiones</label>
+            <input type="text" class="form-control" id="lesiones" formControlName="lesiones" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="enfermedades">Enfermedades</label>
+            <input type="text" class="form-control" id="enfermedades" formControlName="enfermedades" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="informacion_medica_relevante">Información médica relevante</label>
+            <input type="text" class="form-control" id="informacion_medica_relevante" formControlName="informacion_medica_relevante" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="tipo_sangre">Tipo de Sangre</label>
+            <select class="form-control" id="tipo_sangre" formControlName="tipo_sangre">
+              <option value="" disabled>Selecciona tu tipo de sangre</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="text mt-2">
+          <h2>Información adicional</h2>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="politicas" formControlName="politicas" />
+          <label class="form-check-label" htmlFor="politicas">
+            Acepto la política y normativa de SystemGYM.
+          </label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="consentimiento" formControlName="consentimiento" />
+          <label class="form-check-label" htmlFor="consentimiento">
+            Consiento el tratamiento de mis datos personales conforme a la normativa vigente.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Inscribir</button>
+      </form>
+    </div>
+
+    <div class="card-footer">Footer</div>
+  </div>
+</div>

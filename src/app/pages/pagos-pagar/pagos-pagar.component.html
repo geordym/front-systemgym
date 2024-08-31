@@ -1,0 +1,106 @@
+<div>
+  <h1>Pagos</h1>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Modulo de pagos, para pagar factura</h3>
+          <button class="btn btn-primary ml-3" (click)="handleClick()">Listado de Pagos</button>
+
+          <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+          <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" title="Collapse">
+              <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" title="Remove">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="pagoForm" (ngSubmit)="enviarFormularioPagarFactura()">
+            <div class="form-group">
+              <label for="cliente_id">Cliente</label>
+              <select
+                class="form-control"
+                id="id_cliente"
+                formControlName="id_cliente"
+                (change)="handleSelectChangeCliente()"
+              >
+                <option value="">Seleccione un cliente</option>
+                <option *ngFor="let cliente of clients" [value]="cliente.client_id">
+                  {{ cliente.primer_nombre }} {{ cliente.segundo_nombre }} {{ cliente.primer_apellido }} {{ cliente.segundo_apellido }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="factura_id">Facturas</label>
+              <select class="form-control" id="id_factura" formControlName="id_factura"
+              (change)="handleSelectChangeFactura()"
+              >
+                <option value="">Seleccione una factura</option>
+                <option *ngFor="let factura of facturas" [value]="factura.id">
+                  {{ factura.descripcion }}--{{ factura.fecha }}--{{ factura.total }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion">Descripción</label>
+              <input
+                type="text"
+                class="form-control"
+                id="descripcion"
+                formControlName="descripcion"
+                placeholder="Ingrese la descripción"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="monto">Monto</label>
+              <input
+                type="number"
+                step="0.01"
+                class="form-control"
+                id="monto"
+                formControlName="monto"
+                placeholder="Ingrese el Monto"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="metodo_pago">Método de pago</label>
+              <select class="form-control" id="metodo_pago" formControlName="metodo_pago">
+                <option value="">Seleccione un método de pago</option>
+                <option value="NEQUI">NEQUI</option>
+                <option value="TRANSFERENCIA BANCARIA">TRANSFERENCIA BANCARIA</option>
+                <option value="EFECTIVO">EFECTIVO</option>
+                <option value="TARJETA">TARJETA</option>
+              </select>
+            </div>
+
+            <div *ngIf="monto_pendiente > 0" class="alert alert-info my-3">
+              <p class="mb-0">
+                <strong>El monto pendiente de la factura seleccionada es : {{monto_pendiente}}</strong>
+              </p>
+            </div>
+
+            <div *ngIf="facturas?.length === 0" class="alert alert-info my-3">
+              <p class="mb-0">
+                <strong>Este cliente no tiene facturas pendientes por pagar</strong>
+              </p>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Confirmar pago</button>
+          </form>
+        </div>
+
+        <div class="card-footer">Footer</div>
+      </div>
+    </div>
+  </section>
+</div>

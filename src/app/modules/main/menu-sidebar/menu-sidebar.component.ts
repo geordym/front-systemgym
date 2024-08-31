@@ -43,6 +43,38 @@ export const MENU = [
         path: ['/blank']
     },
     {
+      name: 'Inscripcion',
+      iconClasses: 'fas fa-file',
+      path: ['/inscripcion']
+  },
+  {
+    name: 'Clientes',
+    iconClasses: 'fas fa-file',
+    path: ['/clientes']
+},
+{
+  name: 'Membresias',
+  iconClasses: 'fas fa-file',
+  path: ['/membresias']
+},
+{
+  name: 'Suscripcion',
+  iconClasses: 'fas fa-file',
+  path: ['/suscripcion']
+},
+{
+  name: 'Pagos',
+  iconClasses: 'fas fa-file',
+  path: ['/pagos']
+},
+{
+  name: 'Tarifas',
+  iconClasses: 'fas fa-file',
+  path: ['/tarifas']
+},
+
+
+    {
         name: 'Main Menu',
         iconClasses: 'fas fa-folder',
         children: [

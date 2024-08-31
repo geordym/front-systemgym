@@ -1,0 +1,79 @@
+<div>
+  <app-content-header title="Tarifas"></app-content-header>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Lista de Tarifas</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Valor Unitario</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tarifa of tarifas">
+                <td>{{ tarifa.id }}</td>
+                <td>{{ tarifa.descripcion }}</td>
+                <td>${{ tarifa.valor_unitario }}</td>
+                <td>
+                  <button class="btn btn-warning" (click)="openModal(tarifa)">
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">Footer</div>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="modalVisible" class="modal-backdrop fade show"></div>
+  <!-- Modal para editar tarifas -->
+  <div *ngIf="modalVisible" class="modal fade show" style="display: block;" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Tarifa</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="tarifaForm">
+            <input type="hidden" formControlName="id_tarifa">
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="descripcion"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Valor Unitario</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="valor_unitario"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary" (click)="handleEdit()">
+            Guardar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

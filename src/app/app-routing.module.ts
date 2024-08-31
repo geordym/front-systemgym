@@ -11,6 +11,14 @@ import {NonAuthGuard} from '@guards/non-auth.guard';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
+import { InscripcionComponent } from '@pages/inscripcion/inscripcion.component';
+import { ClientesComponent } from '@pages/clientes/clientes.component';
+import { MembresiasComponent } from '@pages/membresias/membresias.component';
+import { SuscripcionComponent } from '@pages/suscripcion/suscripcion.component';
+import { PagosComponent } from '@pages/pagos/pagos.component';
+import { TarifasComponent } from '@pages/tarifas/tarifas.component';
+import { MembresiasCrearComponent } from '@pages/membresias-crear/membresias-crear.component';
+import { PagosPagarComponent } from '@pages/pagos-pagar/pagos-pagar.component';
 
 const routes: Routes = [
     {
@@ -24,17 +32,39 @@ const routes: Routes = [
                 component: ProfileComponent
             },
             {
-                path: 'blank',
-                component: BlankComponent
+                path: 'inscripcion',
+                component: InscripcionComponent
             },
             {
-                path: 'sub-menu-1',
-                component: SubMenuComponent
+                path: 'clientes',
+                component: ClientesComponent
             },
             {
-                path: 'sub-menu-2',
-                component: BlankComponent
+                path: 'membresias',
+                component: MembresiasComponent
             },
+            {
+              path: 'membresias-crear',
+              component: MembresiasCrearComponent
+          },
+            {
+              path: 'suscripcion',
+              component: SuscripcionComponent
+          },
+
+          {
+            path: 'pagos',
+            component: PagosComponent
+        },
+        {
+          path: 'pagos-pagar',
+          component: PagosPagarComponent
+      },
+
+        {
+          path: 'tarifas',
+          component: TarifasComponent
+      },
             {
                 path: '',
                 component: DashboardComponent

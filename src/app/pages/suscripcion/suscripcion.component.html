@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <section class="content">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Suscribir cliente a membresía</h3>
+
+        <button class="btn btn-secondary" (click)="verSuscripciones()">
+          Ver listado de suscripciones
+        </button>
+
+        <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+        <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="suscripcionForm" (ngSubmit)="handleSubmit()">
+          <div class="form-group">
+            <label for="membresia_id">Membresía</label>
+            <select
+              id="membresia_id"
+              class="form-control"
+              formControlName="membresia_id"
+            >
+              <option value="">Seleccione una membresía</option>
+              <option *ngFor="let membresia of membresias" [value]="membresia.id">
+                {{ membresia.nombre }}
+              </option>
+            </select>
+
+            <div *ngIf="isFieldInvalid('membresia_id')  && submitted" class="text-danger">
+              {{ getErrorMessage('membresia_id') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cliente_id">Cliente</label>
+            <select
+              id="cliente_id"
+              class="form-control"
+              formControlName="cliente_id"
+            >
+              <option value="">Seleccione un cliente</option>
+              <option *ngFor="let cliente of clients" [value]="cliente.client_id">
+                {{ cliente.primer_nombre }} {{ cliente.segundo_nombre }}
+                {{ cliente.primer_apellido }} {{ cliente.segundo_apellido }}
+              </option>
+            </select>
+
+            <div *ngIf="isFieldInvalid('cliente_id') && submitted" class="text-danger">
+              {{ getErrorMessage('cliente_id') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="precio">Costo mensual</label>
+            <input
+              type="number"
+              id="precio"
+              class="form-control"
+              formControlName="precio"
+              placeholder="Costo mensual"
+
+            />
+
+            <div *ngIf="isFieldInvalid('precio')  && submitted" class="text-danger">
+              {{ getErrorMessage('precio') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_inicio">Fecha Inicio</label>
+            <input
+              type="date"
+              id="fecha_inicio"
+              class="form-control"
+              formControlName="fecha_inicio"
+
+            />
+
+            <div *ngIf="isFieldInvalid('fecha_inicio')  && submitted" class="text-danger">
+              {{ getErrorMessage('fecha_inicio') }}
+            </div>
+          </div>
+
+          <div
+            *ngIf="tipoMembresia"
+            class="alert alert-info my-3"
+          >
+            <p class="mb-0">
+              <strong>Información:</strong> Esta membresía es de tipo:
+              <span class="text-primary bg-secondary">{{ tipoMembresia }}</span>
+            </p>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3">
+            Suscribir
+          </button>
+        </form>
+      </div>
+
+      <div class="card-footer">Footer</div>
+    </div>
+  </section>
+</div>
