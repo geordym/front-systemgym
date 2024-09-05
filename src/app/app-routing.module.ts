@@ -19,6 +19,9 @@ import { PagosComponent } from '@pages/pagos/pagos.component';
 import { TarifasComponent } from '@pages/tarifas/tarifas.component';
 import { MembresiasCrearComponent } from '@pages/membresias-crear/membresias-crear.component';
 import { PagosPagarComponent } from '@pages/pagos-pagar/pagos-pagar.component';
+import { EgresosComponent } from '@pages/egresos/egresos.component';
+import { EgresosCrearComponent } from '@pages/egresos-crear/egresos-crear.component';
+import { IngresoEgresoComponent } from '@pages/ingreso-egreso/ingreso-egreso.component';
 
 const routes: Routes = [
     {
@@ -51,7 +54,18 @@ const routes: Routes = [
               path: 'suscripcion',
               component: SuscripcionComponent
           },
-
+          {
+            path: 'egresos',
+            component: EgresosComponent
+         },
+          {
+          path: 'egresos-crear',
+          component: EgresosCrearComponent
+           },
+           {
+            path: 'reportes/ingreso-egreso',
+            component: IngresoEgresoComponent
+             },
           {
             path: 'pagos',
             component: PagosComponent

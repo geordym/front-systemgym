@@ -1,0 +1,108 @@
+<div class="container mt-4">
+  <h1>Registrar Egreso</h1>
+
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="egresoForm" (ngSubmit)="crearEgreso()">
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input
+        id="descripcion"
+        formControlName="descripcion"
+        class="form-control"
+        placeholder="Ingrese una descripción"
+      />
+      <div *ngIf="egresoForm.get('descripcion')?.invalid && egresoForm.get('descripcion')?.touched" class="text-danger">
+        Descripción es requerida.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="monto">Monto</label>
+      <input
+        id="monto"
+        type="number"
+        formControlName="monto"
+        class="form-control"
+        placeholder="Ingrese el monto"
+      />
+      <div *ngIf="egresoForm.get('monto')?.invalid && egresoForm.get('monto')?.touched" class="text-danger">
+        Monto es requerido y debe ser un valor positivo.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="metodo_pago">Método de Pago</label>
+      <div id="metodo_pago" formControlName="metodo_pago" class="form-check">
+        <div class="form-check">
+          <input
+            type="radio"
+            id="tarjeta"
+            formControlName="metodo_pago"
+            value="TARJETA"
+            class="form-check-input"
+            [checked]="egresoForm.get('metodo_pago')?.value === 'TARJETA'"
+          />
+          <label class="form-check-label" for="tarjeta">
+            TARJETA
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            type="radio"
+            id="nequi"
+            formControlName="metodo_pago"
+            value="NEQUI"
+            class="form-check-input"
+            [checked]="egresoForm.get('metodo_pago')?.value === 'NEQUI'"
+          />
+          <label class="form-check-label" for="nequi">
+            NEQUI
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            type="radio"
+            id="efectivo"
+            formControlName="metodo_pago"
+            value="EFECTIVO"
+            class="form-check-input"
+            [checked]="egresoForm.get('metodo_pago')?.value === 'EFECTIVO'"
+          />
+          <label class="form-check-label" for="efectivo">
+            EFECTIVO
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            type="radio"
+            id="transferencia"
+            formControlName="metodo_pago"
+            value="TRANSFERENCIA"
+            class="form-check-input"
+            [checked]="egresoForm.get('metodo_pago')?.value === 'TRANSFERENCIA'"
+          />
+          <label class="form-check-label" for="transferencia">
+            TRANSFERENCIA
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="egresoForm.get('metodo_pago')?.invalid && egresoForm.get('metodo_pago')?.touched" class="text-danger">
+        Método de pago es requerido.
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Crear Egreso</button>
+  </form>
+</div>

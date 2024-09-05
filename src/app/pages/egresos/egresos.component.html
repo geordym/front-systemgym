@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Listado de Egresos</h1>
+    <button (click)="handleCreate()" class="btn btn-primary">Ir a Crear Egreso</button>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Listado de Egresos</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool"  title="Collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool"  title="Remove">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Descripción</th>
+              <th>Fecha</th>
+              <th>Monto</th>
+              <th>Método de Pago</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let egreso of egresos">
+              <td>{{ egreso.id }}</td>
+              <td>{{ egreso.descripcion }}</td>
+              <td>{{ egreso.fecha | date }}</td>
+              <td>{{ egreso.monto | currency }}</td>
+              <td>{{ egreso.metodo_pago }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="eliminarEgreso(egreso.id)">Eliminar</button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card-footer">Footer</div>
+  </div>
+</div>

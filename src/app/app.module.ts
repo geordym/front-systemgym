@@ -54,6 +54,9 @@ import { PagosComponent } from './pages/pagos/pagos.component';
 import { TarifasComponent } from './pages/tarifas/tarifas.component';
 import { MembresiasCrearComponent } from './pages/membresias-crear/membresias-crear.component';
 import { PagosPagarComponent } from './pages/pagos-pagar/pagos-pagar.component';
+import { EgresosComponent } from './pages/egresos/egresos.component';
+import { EgresosCrearComponent } from './pages/egresos-crear/egresos-crear.component';
+import { IngresoEgresoComponent } from './pages/ingreso-egreso/ingreso-egreso.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -96,7 +99,10 @@ registerLocaleData(localeEn, 'en-EN');
         PagosComponent,
         TarifasComponent,
         MembresiasCrearComponent,
-        PagosPagarComponent
+        PagosPagarComponent,
+        EgresosComponent,
+        EgresosCrearComponent,
+        IngresoEgresoComponent
     ],
     bootstrap: [AppComponent],
     imports: [

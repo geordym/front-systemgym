@@ -4,4 +4,5 @@ export interface Pago {
   descripcion: string;
   metodo_pago: string;
   monto:       number;
+  fecha?: Date;
 }

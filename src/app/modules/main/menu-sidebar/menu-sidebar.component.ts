@@ -38,11 +38,6 @@ export const MENU = [
         path: ['/']
     },
     {
-        name: 'Blank',
-        iconClasses: 'fas fa-file',
-        path: ['/blank']
-    },
-    {
       name: 'Inscripcion',
       iconClasses: 'fas fa-file',
       path: ['/inscripcion']
@@ -68,6 +63,11 @@ export const MENU = [
   path: ['/pagos']
 },
 {
+  name: 'Egresos',
+  iconClasses: 'fas fa-file',
+  path: ['/egresos']
+},
+{
   name: 'Tarifas',
   iconClasses: 'fas fa-file',
   path: ['/tarifas']
@@ -75,13 +75,13 @@ export const MENU = [
 
 
     {
-        name: 'Main Menu',
+        name: 'Reportes',
         iconClasses: 'fas fa-folder',
         children: [
             {
-                name: 'Sub Menu',
+                name: 'Ingreso/Egreso',
                 iconClasses: 'far fa-address-book',
-                path: ['/sub-menu-1']
+                path: ['/reportes/ingreso-egreso']
             },
             {
                 name: 'Blank',

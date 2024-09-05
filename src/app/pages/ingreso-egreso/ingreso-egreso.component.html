@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  <h1>Reporte de Ingresos y Egresos</h1>
+
+  <!-- Selector de Fecha -->
+  <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="fecha">Seleccione una fecha:</label>
+      <input
+        type="date"
+        id="fecha"
+        formControlName="fecha"
+        class="form-control"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generar Reporte</button>
+  </form>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Ingresos -->
+  <div *ngIf="ingresoEgreso?.ingresos?.length > 0">
+    <h2>Ingresos</h2>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Factura ID</th>
+              <th>Descripción</th>
+              <th>Método de Pago</th>
+              <th>Monto</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingreso of ingresoEgreso.ingresos">
+              <td>{{ ingreso.id }}</td>
+              <td>{{ ingreso.factura_id }}</td>
+              <td>{{ ingreso.descripcion }}</td>
+              <td>{{ ingreso.metodo_pago }}</td>
+              <td>{{ ingreso.monto | currency }}</td>
+              <td>{{ ingreso.fecha | date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Egresos -->
+  <div *ngIf="ingresoEgreso?.egresos?.length > 0">
+    <h2>Egresos</h2>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Descripción</th>
+              <th>Monto</th>
+              <th>Método de Pago</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let egreso of ingresoEgreso.egresos">
+              <td>{{ egreso.id }}</td>
+              <td>{{ egreso.descripcion }}</td>
+              <td>{{ egreso.monto | currency }}</td>
+              <td>{{ egreso.metodo_pago }}</td>
+              <td>{{ egreso.fecha | date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
