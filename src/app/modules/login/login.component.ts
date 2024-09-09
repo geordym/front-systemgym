@@ -8,6 +8,7 @@ import {
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
+        private authService: AuthService,
         private appService: AppService
     ) {}
 
@@ -37,19 +39,31 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
     }
 
-    async loginByAuth() {
-        if (this.loginForm.valid) {
-            this.isAuthLoading = true;
-            await this.appService.loginWithEmail(
-                this.loginForm.value.email,
-                this.loginForm.value.password
-            );
+    loginByAuth() {
+      if (this.loginForm.valid) {
+          this.isAuthLoading = true;
 
-            this.isAuthLoading = false;
-        } else {
-            this.toastr.error('Form is not valid!');
-        }
-    }
+          this.authService.loginWithEmail(
+              this.loginForm.value.email,
+              this.loginForm.value.password
+          ).subscribe({
+              next: (response) => {
+                this.appService.setUserSession(response);
+//                  alert("response");
+                  this.isAuthLoading = false;
+                  // Ejemplo: redireccionar o mostrar mensaje de éxito
+              },
+              error: (error) => {
+                  this.isAuthLoading = false;
+                  this.toastr.error('Login failed. Please check your credentials.');
+                  console.error(error);
+              }
+          });
+      } else {
+          this.toastr.error('Form is not valid!');
+      }
+  }
+
 
 
 

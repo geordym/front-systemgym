@@ -28,6 +28,10 @@ export class AppService {
 
 
 
+    setUserSession(user: User) {
+          this.user = user;
+          this.router.navigate(['/']);
+    }
 
 
     loginWithEmail(email: string, password: string) {
