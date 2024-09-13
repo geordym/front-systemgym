@@ -80,9 +80,6 @@ export class AuthService {
   logout() {
     this.currentUser = null;
     localStorage.removeItem('authToken');
-
-    // Redirige al usuario a la página de inicio de sesión
-    this.router.navigate(['/login']);
   }
 
 

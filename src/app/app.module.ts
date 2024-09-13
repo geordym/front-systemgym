@@ -28,7 +28,6 @@ import {LanguageComponent} from '@modules/main/header/language/language.componen
 import {MainMenuComponent} from './pages/main-menu/main-menu.component';
 import {SubMenuComponent} from './pages/main-menu/sub-menu/sub-menu.component';
 import {MenuItemComponent} from './components/menu-item/menu-item.component';
-import {ControlSidebarComponent} from './modules/main/control-sidebar/control-sidebar.component';
 import {StoreModule} from '@ngrx/store';
 import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
@@ -57,6 +56,7 @@ import { PagosPagarComponent } from './pages/pagos-pagar/pagos-pagar.component';
 import { EgresosComponent } from './pages/egresos/egresos.component';
 import { EgresosCrearComponent } from './pages/egresos-crear/egresos-crear.component';
 import { IngresoEgresoComponent } from './pages/ingreso-egreso/ingreso-egreso.component';
+import { SuscripcionListarComponent } from './pages/suscripcion-listar/suscripcion-listar.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -81,7 +81,6 @@ registerLocaleData(localeEn, 'en-EN');
         MainMenuComponent,
         SubMenuComponent,
         MenuItemComponent,
-        ControlSidebarComponent,
         SidebarSearchComponent,
         ActivityTabComponent,
         TimelineTabComponent,
@@ -102,7 +101,8 @@ registerLocaleData(localeEn, 'en-EN');
         PagosPagarComponent,
         EgresosComponent,
         EgresosCrearComponent,
-        IngresoEgresoComponent
+        IngresoEgresoComponent,
+        SuscripcionListarComponent
     ],
     bootstrap: [AppComponent],
     imports: [

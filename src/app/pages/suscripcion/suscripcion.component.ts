@@ -19,7 +19,7 @@ onSubmit() {
 throw new Error('Method not implemented.');
 }
 verSuscripciones() {
-throw new Error('Method not implemented.');
+this.router.navigate(['suscripciones-listar']);
 }
 
 
@@ -197,7 +197,7 @@ throw new Error('Method not implemented.');
   }
 
   handleClick(): void {
-    // Lógica para manejar el click del botón "Ver listado de suscripciones"
+    this.router.navigate(['/suscripciones-listar'])
   }
 
 

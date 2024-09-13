@@ -120,7 +120,7 @@
 .navbar-light {
   .form-control-navbar,
   .btn-navbar {
-    background-color: $main-header-light-form-control-bg;
+    background-color: #ff0000;
     border-color: $main-header-light-form-control-border-color;
   }
 
@@ -136,7 +136,7 @@
     &:focus {
       &,
       + .input-group-append .btn-navbar {
-        background-color: $main-header-light-form-control-focused-bg;
+        background-color: #ff0000;
         border-color: $main-header-light-form-control-focused-border-color !important;
         color: $main-header-light-form-control-focused-color;
       }

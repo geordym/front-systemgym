@@ -1,6 +1,7 @@
 // dashboard.component.ts
 import { DashboardData } from '@/interfaces/DashboardData';
 import {Component} from '@angular/core';
+import { Router } from '@angular/router';
 import {
     faBookmark,
     faEnvelope,
@@ -22,7 +23,7 @@ export class DashboardComponent {
   public dashboardData: DashboardData | undefined;
   public error: any;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchDashboardData();
@@ -38,6 +39,11 @@ export class DashboardComponent {
         console.error('Error:', error);
       }
     );
+  }
+
+
+  redirectTo(route: string){
+    this.router.navigate([route]);
   }
 
 

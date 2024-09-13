@@ -1,9 +1,9 @@
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary bg-info">
     <div class="card-header text-center">
-        <a [routerLink]="['/']" class="h1"><b>Admin</b>LTE</a>
+        <a [routerLink]="['/']" class="h1"><b>System</b>GYM</a>
     </div>
     <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Inicia sesion para poder acceder</p>
 
         <form [formGroup]="loginForm" (ngSubmit)="loginByAuth()">
             <div class="input-group mb-3">
@@ -43,7 +43,7 @@
                         [loading]="isAuthLoading"
                         (click)="loginByAuth()"
                     >
-                        Sign In
+                        Login
                     </pf-button>
                 </div>
                 <!-- /.col -->

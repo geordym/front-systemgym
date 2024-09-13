@@ -5,38 +5,35 @@
     <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" (click)="redirectTo('/pagos')">
+
               <app-small-box
-                [title]="'Total Sales'"
+                [title]="'Total Pagos Registrados'"
                 [text]="dashboardData?.total_ventas.toString() || '0'"
-                [navigateTo]="'#'"
                 [variant]="'info'"
                 [icon]="{content: faCartShopping}"
               ></app-small-box>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" (click)="redirectTo('/suscripcion')" >
               <app-small-box
-                [title]="'Active Subscriptions'"
+                [title]="'Suscripciones activas'"
                 [text]="dashboardData?.total_suscripciones_activas.toString() || '0'"
-                [navigateTo]="'#'"
                 [variant]="'success'"
                 [icon]="{content: faChartSimple}"
               ></app-small-box>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" (click)="redirectTo('/clientes')" >
               <app-small-box
-                [title]="'Total Clients'"
+                [title]="'Total Clientes'"
                 [text]="dashboardData?.total_clientes.toString() || '0'"
-                [navigateTo]="'#'"
                 [variant]="'warning'"
                 [icon]="{content: faUserPlus}"
               ></app-small-box>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" (click)="redirectTo('/membresias')"   >
               <app-small-box
-                [title]="'Total Memberships'"
+                [title]="'Total Membresias'"
                 [text]="dashboardData?.total_membresias.toString() || '0'"
-                [navigateTo]="'#'"
                 [variant]="'danger'"
                 [icon]="{content: faChartPie, variant: 'success'}"
               ></app-small-box>

@@ -1,5 +1,6 @@
 import { User } from '@/interfaces/User';
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {AppService} from '@services/app.service';
 import { AuthService } from '@services/auth.service';
 import {DateTime} from 'luxon';
@@ -12,7 +13,7 @@ import {DateTime} from 'luxon';
 export class UserComponent implements OnInit {
     public user: User;
 
-    constructor(private appService: AuthService) {}
+    constructor(private appService: AuthService, private router: Router) {}
 
     ngOnInit(): void {
         this.user = this.appService.user;
@@ -20,7 +21,8 @@ export class UserComponent implements OnInit {
 
     logout() {
         this.appService.logout();
-    }
+        window.location.reload();
+      }
 
     formatDate(date) {
         return DateTime.fromRFC2822(date).toFormat('dd LLL yyyy');
