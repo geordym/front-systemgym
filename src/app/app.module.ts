@@ -57,6 +57,8 @@ import { EgresosComponent } from './pages/egresos/egresos.component';
 import { EgresosCrearComponent } from './pages/egresos-crear/egresos-crear.component';
 import { IngresoEgresoComponent } from './pages/ingreso-egreso/ingreso-egreso.component';
 import { SuscripcionListarComponent } from './pages/suscripcion-listar/suscripcion-listar.component';
+import { MembresiasEditarComponent } from './pages/membresias-editar/membresias-editar.component';
+import { LoginClientComponent } from './modules/login-client/login-client.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -102,7 +104,9 @@ registerLocaleData(localeEn, 'en-EN');
         EgresosComponent,
         EgresosCrearComponent,
         IngresoEgresoComponent,
-        SuscripcionListarComponent
+        SuscripcionListarComponent,
+        MembresiasEditarComponent,
+        LoginClientComponent
     ],
     bootstrap: [AppComponent],
     imports: [

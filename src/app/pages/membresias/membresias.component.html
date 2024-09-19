@@ -43,6 +43,7 @@
               <th>Precio</th>
               <th>Periodicidad</th>
               <th>Accesos</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -52,6 +53,10 @@
               <td>{{ membresia.precio }}</td>
               <td>{{ membresia.periodicidad }}</td>
               <td>{{ membresia.accesos }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="editar(membresia.id)">Editar</button>
+                <button class="btn btn-danger">Eliminar</button>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -918,7 +918,7 @@
   .btn-sidebar {
     background-color: lighten($sidebar-dark-bg, 5%);
     border: 1px solid lighten($sidebar-dark-bg, 15%);
-    color: lighten(color-yiq(lighten($sidebar-dark-bg, 5%)), 15%);
+    color:#0000fa;
   }
 
   .form-control-sidebar:focus,

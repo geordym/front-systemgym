@@ -12,6 +12,7 @@ import { MembresiasService } from '@services/membresias.service';
 export class MembresiasComponent {
 
 
+
   constructor(private membresiasService: MembresiasService,
     private modalService: NgbModal,
     private router: Router
@@ -67,7 +68,9 @@ handleClick() {
   }
 
 
-
+  editar(id: any) {
+    this.router.navigate(["/membresias/editar/", id])
+    }
 
 
 

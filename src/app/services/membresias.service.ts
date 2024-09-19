@@ -39,6 +39,56 @@ export class MembresiasService {
     );
   }
 
+
+  obtenerMembresiaPorId(id: number): Observable<{ success: boolean; message?: string; membresia?: Membresia }> {
+    const endpoint = `${this.apiUrl}/api/membresias/${id}`;
+    const token = this.userService.getAuthToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<Membresia>(endpoint, { headers }).pipe(
+      map(data => ({
+        success: true,
+        membresia: data,
+        message: 'Lista de membresías obtenida correctamente'
+      })),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Hubo un problema al obtener la membresías:', error);
+        return throwError({
+          success: false,
+          message: 'Hubo un problema al obtener la membresías'
+        });
+      })
+    );
+  }
+
+  actualizarMembresia(membresia: Membresia): Observable<{ success: boolean, message?: string }> {
+    const token = this.userService.getAuthToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put<{ success: boolean, message?: string }>(`${this.apiUrl}/api/membresias`, membresia, { headers }).pipe(
+      map(response => {
+        if (response.success) {
+          return { success: true, message: response.message };
+        } else {
+          throw new Error(response.message || 'Error desconocido');
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Hubo un problema al crear la membresía:', error);
+        return throwError({
+          success: false,
+          message: error.error.message || 'Hubo un problema al crear la membresía'
+        });
+      })
+    );
+  }
+
   crearMembresia(membresia: Membresia): Observable<{ success: boolean, message?: string }> {
     const token = this.userService.getAuthToken();
     const headers = new HttpHeaders({

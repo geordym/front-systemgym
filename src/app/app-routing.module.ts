@@ -23,6 +23,8 @@ import { EgresosComponent } from '@pages/egresos/egresos.component';
 import { EgresosCrearComponent } from '@pages/egresos-crear/egresos-crear.component';
 import { IngresoEgresoComponent } from '@pages/ingreso-egreso/ingreso-egreso.component';
 import { SuscripcionListarComponent } from '@pages/suscripcion-listar/suscripcion-listar.component';
+import { MembresiasEditarComponent } from '@pages/membresias-editar/membresias-editar.component';
+import { LoginClientComponent } from '@modules/login-client/login-client.component';
 
 const routes: Routes = [
     {
@@ -46,6 +48,10 @@ const routes: Routes = [
             {
                 path: 'membresias',
                 component: MembresiasComponent
+            },
+            {
+              path: 'membresias/editar/:id',
+              component: MembresiasEditarComponent
             },
             {
               path: 'membresias-crear',
@@ -90,6 +96,11 @@ const routes: Routes = [
             }
         ]
     },
+    {
+      path: 'login-client',
+      component: LoginClientComponent,
+      canActivate: [NonAuthGuard]
+  },
     {
         path: 'login',
         component: LoginComponent,
