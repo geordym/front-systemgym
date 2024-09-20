@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { EstadisticaMembresia } from '@/interfaces/EstadisticaMembresia';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,32 @@ export class MembresiasService {
     );
   }
 
+  private getHeaders(): HttpHeaders {
+    const token = this.userService.getAuthToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
+  obtenerEstadisticaMembresia(): Observable<{ success: boolean; message?: string; membresias?: EstadisticaMembresia[] }> {
+    const endpoint = `${this.apiUrl}/api/membresias/estadisticas/membresias`;
+    return this.http.get<EstadisticaMembresia[]>(endpoint, { headers: this.getHeaders() }).pipe(
+      map(data => ({
+        success: true,
+        membresias: data, // Asegúrate de que este nombre sea coherente
+        message: 'Lista de membresías obtenida correctamente'
+      })),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Hubo un problema al obtener las membresías:', error);
+        const errorMessage = error.error?.message || 'Error desconocido';
+        return throwError({
+          success: false,
+          message: `Hubo un problema al obtener las membresías: ${errorMessage}`
+        });
+      })
+    );
+  }
 
   obtenerMembresiaPorId(id: number): Observable<{ success: boolean; message?: string; membresia?: Membresia }> {
     const endpoint = `${this.apiUrl}/api/membresias/${id}`;

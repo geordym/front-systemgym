@@ -25,6 +25,10 @@ import { IngresoEgresoComponent } from '@pages/ingreso-egreso/ingreso-egreso.com
 import { SuscripcionListarComponent } from '@pages/suscripcion-listar/suscripcion-listar.component';
 import { MembresiasEditarComponent } from '@pages/membresias-editar/membresias-editar.component';
 import { LoginClientComponent } from '@modules/login-client/login-client.component';
+import { ClientePageComponent } from '@pages/cliente-page/cliente-page.component';
+import { clientGuardGuard } from '@guards/client-guard.guard';
+import { ReporteingresoComponent } from '@pages/reporteingreso/reporteingreso.component';
+import { ReporteSuscripcionesComponent } from '@pages/reporte-suscripciones/reporte-suscripciones.component';
 
 const routes: Routes = [
     {
@@ -73,10 +77,19 @@ const routes: Routes = [
             path: 'suscripciones-listar',
             component: SuscripcionListarComponent
              },
+
            {
             path: 'reportes/ingreso-egreso',
             component: IngresoEgresoComponent
              },
+             {
+              path: 'reportes/ingresos',
+              component: ReporteingresoComponent
+               },
+               {
+                path: 'reportes/suscripciones',
+                component: ReporteSuscripcionesComponent
+                 },
           {
             path: 'pagos',
             component: PagosComponent
@@ -96,6 +109,13 @@ const routes: Routes = [
             }
         ]
     },
+
+    {
+      path: 'clientes-module',
+      component: ClientePageComponent,
+      canActivate: [clientGuardGuard]
+    },
+
     {
       path: 'login-client',
       component: LoginClientComponent,

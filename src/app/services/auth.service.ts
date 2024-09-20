@@ -18,6 +18,44 @@ export class AuthService {
   private currentUser: any = null;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  loginWithEmailClient(username: string, password: string): Observable<any> {
+    const endpoint = `${this.apiUrl}/api/auth/login/client`;
+
+    return this.http.post<Response>(endpoint, { username, password }).pipe(
+      switchMap(response => {
+        if (response.jwt) {
+          const token = response.jwt;
+          localStorage.setItem('authToken', token);
+          return this.getProfile().pipe(
+            switchMap(user => {
+              if (user.role !== "CLIENTE") {
+                return throwError(() => new Error('Login failed: this credentials are not of a client')); // Lanzar el error correctamente
+              }
+
+
+              this.currentUser = user;
+              return of(user); // Retornar el usuario si es válido
+            }),
+            catchError(profileError => {
+              console.error('Error fetching profile', profileError);
+              return throwError(() => new Error('Error fetching profile')); // Propagar el error al suscriptor
+            })
+          );
+        } else {
+          // Si la respuesta no contiene un token, devolver un error
+          return throwError(() => new Error('Login failed: invalid credentials only crendentials of client can be used'));
+        }
+      }),
+      catchError(error => {
+        console.error('Login error', error);
+        return throwError(() => new Error('Login failed, only crendentials of client can be used'));
+      })
+    );
+  }
+
+
+
   loginWithEmail(username: string, password: string): Observable<any> {
     const endpoint = `${this.apiUrl}/api/auth/login`;
 
@@ -31,6 +69,12 @@ export class AuthService {
           // Llamar a getProfile() para obtener el usuario
           return this.getProfile().pipe(
             map(user => {
+
+              if(user.role == "ADMINISTRADOR"){
+                return throwError(() => new Error('Login failed: this credentials are not of a administrador')); // Lanzar el error correctamente
+              }
+
+
               this.currentUser = user;
               return user;
             }),
@@ -41,12 +85,11 @@ export class AuthService {
           );
         } else {
           // Si la respuesta no contiene un token, devolver un error
-          return throwError(() => new Error('Login failed: invalid credentials'));
+          return throwError(() => new Error('Login failed: invalid credentials, only crendentials of administrator can be used NOT JWT'));
         }
       }),
       catchError(error => {
-        console.error('Login error', error);
-        return throwError(() => new Error('Login failed'));
+        return throwError(() => new Error('Login failed, only crendentials of administrator can be used'));
       })
     );
 }
@@ -57,7 +100,7 @@ export class AuthService {
   }
 
   getProfile(): Observable<any> {
-    const token = localStorage.getItem('authToken');
+    const token =  this.getAuthToken();
     if (!token) {
       return of(null); // No hay token, no se puede obtener el perfil
     }

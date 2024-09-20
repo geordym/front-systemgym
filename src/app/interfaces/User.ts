@@ -9,6 +9,7 @@ export interface User {
   refreshToken:  string;
   tenantId:      null;
   anonymous:     boolean;
+  role: string;
 }
 
 export interface Metadata {

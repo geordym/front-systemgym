@@ -44,4 +44,25 @@
 
         </div>
     </section>
+
+
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <!-- Aquí van tus small-boxes -->
+              <div class="col-lg-12">
+                  <h3>Estadísticas de Membresías</h3>
+                  <div>
+                    <ngx-charts-pie-chart
+                      [view]="[700, 400]"
+                      [results]="pieChartData"
+                      [legend]="true"
+                      [doughnut]="false">
+                    </ngx-charts-pie-chart>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </section>
 </div>

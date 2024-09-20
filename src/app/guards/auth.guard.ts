@@ -43,13 +43,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(next, state);
     }
 
+
     getProfile(): Observable<boolean> {
       return this.authService.getProfile().pipe(
         map(user => {
-          if (user) {
+          console.log(user);
+          if (user && user.role === "ADMINISTRADOR") {
             return true;
+
           } else {
-            this.authService.logout();
+           // this.authService.logout();
             this.router.navigate(['/login']);
             return false;
           }
@@ -62,6 +65,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       );
 
     }
+
 
 
 }

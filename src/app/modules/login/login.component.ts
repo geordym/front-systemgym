@@ -9,6 +9,7 @@ import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
 import { AuthService } from '@services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         private renderer: Renderer2,
         private toastr: ToastrService,
         private authService: AuthService,
-        private appService: AppService
+        private appService: AppService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -49,8 +51,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           ).subscribe({
               next: (response) => {
                 this.appService.setUserSession(response);
-//                  alert("response");
                   this.isAuthLoading = false;
+
+                  this.router.navigate(['/']);
                   // Ejemplo: redireccionar o mostrar mensaje de éxito
               },
               error: (error) => {

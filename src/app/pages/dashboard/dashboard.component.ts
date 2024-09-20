@@ -1,5 +1,6 @@
 // dashboard.component.ts
 import { DashboardData } from '@/interfaces/DashboardData';
+import { EstadisticaMembresia } from '@/interfaces/EstadisticaMembresia';
 import {Component} from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -11,6 +12,8 @@ import {
     faChartPie
 } from '@fortawesome/free-solid-svg-icons';
 import { DashboardService } from '@services/dashboard.service';
+import { MembresiasService } from '@services/membresias.service';
+import { Color } from 'chart.js';
 
 @Component({
     selector: 'app-dashboard',
@@ -21,12 +24,21 @@ export class DashboardComponent {
 
 
   public dashboardData: DashboardData | undefined;
-  public error: any;
 
-  constructor(private dashboardService: DashboardService, private router: Router) {}
+  public estadisticas: EstadisticaMembresia[] = [];
+
+  public error: any;
+  colorScheme: Color;
+
+  constructor(private dashboardService: DashboardService, private router: Router, private membresiaService: MembresiasService) {}
+
+
+  public pieChartData: any[] = [
+  ];
 
   ngOnInit(): void {
     this.fetchDashboardData();
+    this.obtenerEstadisticaMembresia();
   }
 
   fetchDashboardData(): void {
@@ -40,6 +52,28 @@ export class DashboardComponent {
       }
     );
   }
+
+
+  obtenerEstadisticaMembresia(): void {
+    this.membresiaService.obtenerEstadisticaMembresia().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.estadisticas = response.membresias || []; // Guarda la lista de membresías
+          this.pieChartData = []; // Asegúrate de inicializar el array
+          this.estadisticas.forEach((estadistica) => {
+            this.pieChartData.push({ name: estadistica.membresia, value: estadistica.cantidad });
+          });
+        } else {
+          // Manejo de error o mensaje si no se obtienen estadísticas
+          console.warn('No se obtuvieron estadísticas de membresías');
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener estadísticas de membresías:', err);
+      }
+    });
+  }
+
 
 
   redirectTo(route: string){

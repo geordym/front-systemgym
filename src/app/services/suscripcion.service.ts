@@ -14,8 +14,35 @@ export class SuscripcionService {
 
   public apiUrl = environment.APIURL;
 
+
+  desactivarSuscripcion(id: string): Observable<{ success: boolean; message?: string }> {
+    const endpoint = `${this.apiUrl}/api/membresias/suscripcion/desactivar/${id}`;
+    const token = this.userService.getAuthToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put<{ success: boolean; message: string }>(endpoint, null, { headers }).pipe(
+      map(response => ({
+        success: response.success,
+        message: response.message // Aquí tomamos el mensaje de la respuesta
+      })),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Hubo un problema al desactivar la suscripción', error);
+        return throwError({
+          success: false,
+          message: 'Hubo un problema al desactivar la suscripción'
+        });
+      })
+    );
+  }
+
+
+
   listarSuscripciones(): Observable<{ success: boolean; message?: string; suscripciones?: Suscripcion[] }> {
-    const endpoint = `${this.apiUrl}/membresias/suscripcion/listar`;
+    const endpoint = `${this.apiUrl}/api/membresias/suscripcion/listar`;
     const token = this.userService.getAuthToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,

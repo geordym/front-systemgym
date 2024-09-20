@@ -29,6 +29,9 @@
                   <th>Cliente</th>
                   <th>Fecha Inicio</th>
                   <th>Fecha Fin</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -37,6 +40,15 @@
                   <td>{{ suscripcion.client.primer_nombre }}</td>
                   <td>{{ suscripcion.fechaInicio | date }}</td>
                   <td>{{ suscripcion.fechaFin | date }}</td>
+                  <td>{{ suscripcion.estado}}</td>
+                  <td>
+                    <button *ngIf="suscripcion.estado !== 'DESACTIVADA'"
+                    class="btn btn-danger"
+                    (click)="desactivarSuscripcion(suscripcion.id)">
+              Desactivar
+            </button>
+
+          </td>
                 </tr>
               </tbody>
             </table>

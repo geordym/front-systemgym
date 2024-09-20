@@ -1,0 +1,60 @@
+<div class="container my-4">
+  <!-- Título para los pagos -->
+  <h2 class="mb-4">Lista de Pagos</h2>
+
+  <!-- Tabla para listar los pagos -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Método de Pago</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Ejemplo de una fila de pagos, aquí debes iterar con los datos -->
+      <tr *ngFor="let pago of pagosys.pagoFacturas">
+        <td>{{ pago.id }}</td>
+        <td>{{ pago.descripcion }}</td>
+        <td>{{ pago.metodo_pago }}</td>
+        <td>{{ pago.monto | currency }}</td>
+        <td>{{ pago.fecha | date:'dd/MM/yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Separador entre tablas -->
+  <hr class="my-5">
+
+  <!-- Título para las suscripciones -->
+  <h2 class="mb-4">Lista de Suscripciones</h2>
+
+  <!-- Tabla para listar las suscripciones -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Membresía</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Ejemplo de una fila de suscripciones, aquí debes iterar con los datos -->
+      <tr *ngFor="let suscripcion of pagosys.suscripcionList">
+        <td>{{ suscripcion.id }}</td>
+        <td>{{ suscripcion.membresia.nombre }}</td>
+        <td>{{ suscripcion.fechaInicio | date:'dd/MM/yyyy' }}</td>
+        <td>{{ suscripcion.fechaFin | date:'dd/MM/yyyy' }}</td>
+        <td>
+          <span [ngClass]="{'badge bg-success': suscripcion.estado === 'activa', 'badge bg-danger': suscripcion.estado === 'inactiva'}">
+            {{ suscripcion.estado }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

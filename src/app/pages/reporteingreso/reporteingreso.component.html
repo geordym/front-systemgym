@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Reporte de Ingresos</h1>
+
+  <!-- Selector de Fecha -->
+  <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="year">Seleccione el año:</label>
+      <input
+        type="number"
+        id="year"
+        formControlName="year"
+        class="form-control"
+        min="1900"
+        max="2100"
+        placeholder="Año"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="month">Seleccione el mes:</label>
+      <select id="month" formControlName="month" class="form-control">
+        <option *ngFor="let month of months" [value]="month.value">
+          {{ month.name }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generar Reporte</button>
+  </form>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+
+</div>

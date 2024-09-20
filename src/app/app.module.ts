@@ -59,7 +59,10 @@ import { IngresoEgresoComponent } from './pages/ingreso-egreso/ingreso-egreso.co
 import { SuscripcionListarComponent } from './pages/suscripcion-listar/suscripcion-listar.component';
 import { MembresiasEditarComponent } from './pages/membresias-editar/membresias-editar.component';
 import { LoginClientComponent } from './modules/login-client/login-client.component';
-
+import { ClientePageComponent } from './pages/cliente-page/cliente-page.component';
+import { ReporteingresoComponent } from './pages/reporteingreso/reporteingreso.component';
+import { ReporteSuscripcionesComponent } from './pages/reporte-suscripciones/reporte-suscripciones.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
@@ -106,10 +109,14 @@ registerLocaleData(localeEn, 'en-EN');
         IngresoEgresoComponent,
         SuscripcionListarComponent,
         MembresiasEditarComponent,
-        LoginClientComponent
+        LoginClientComponent,
+        ClientePageComponent,
+        ReporteingresoComponent,
+        ReporteSuscripcionesComponent
     ],
     bootstrap: [AppComponent],
     imports: [
+      NgxChartsModule,
       HttpClientModule,
         ProfabricComponentsModule,
         CommonModule,

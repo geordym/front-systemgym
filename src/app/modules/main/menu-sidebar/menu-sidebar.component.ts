@@ -84,6 +84,16 @@ export const MENU = [
                 path: ['/reportes/ingreso-egreso']
             },
             {
+              name: 'Ingresos',
+              iconClasses: 'far fa-address-book',
+              path: ['/reportes/ingresos']
+          },
+          {
+            name: 'Suscripciones Activas',
+            iconClasses: 'far fa-address-book',
+            path: ['/reportes/suscripciones']
+        },
+            {
                 name: 'Blank',
                 iconClasses: 'fas fa-file',
                 path: ['/sub-menu-2']

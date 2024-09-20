@@ -6,6 +6,8 @@
  */
 
 // Bootstrap
+$color: #007bff; // Por ejemplo, el color primario de Bootstrap.
+
 // ---------------------------------------------------
 @import '../../node_modules/bootstrap/scss/functions';
 @import 'bootstrap-variables';
@@ -13,9 +15,12 @@
 
 // Variables and Mixins
 // ---------------------------------------------------
+$color: #007bff; // Por ejemplo, el color primario de Bootstrap.
+
 @import 'variables';
 @import 'variables-alt';
 @import 'mixins';
+$color: #007bff; // Por ejemplo, el color primario de Bootstrap.
 
 @import 'parts/core';
 @import 'parts/components';

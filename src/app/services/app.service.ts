@@ -30,8 +30,13 @@ export class AppService {
 
     setUserSession(user: User) {
           this.user = user;
-          this.router.navigate(['/']);
+          this.router.navigate(['/clientes-module']);
     }
+
+    getUserSession() : User {
+      return this.user;
+}
+
 
 
     loginWithEmail(email: string, password: string) {

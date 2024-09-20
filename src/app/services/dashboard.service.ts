@@ -4,14 +4,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { MembresiasService } from './membresias.service';
+import { EstadisticaMembresia } from '@/interfaces/EstadisticaMembresia';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-
   private apiUrl = environment.APIURL;
+  public membresias: EstadisticaMembresia[] = [];
 
 
   constructor(private http: HttpClient, private userService: AuthService) {}
@@ -36,6 +38,5 @@ export class DashboardService {
       })
     );
   }
-
 
 }

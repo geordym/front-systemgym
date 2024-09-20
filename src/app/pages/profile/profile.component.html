@@ -1,1 +1,28 @@
-Perfil en construccion
+<div class="card shadow-sm" style="width: 100%; max-width: 500px; margin: 0 auto;">
+  <div class="card-header bg-primary text-white">
+    <h4 class="mb-0">Actualizar Imagen de Perfil</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="imageForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="image">Subir nueva imagen</label>
+        <input
+          type="file"
+          id="image"
+          formControlName="image"
+          class="form-control-file"
+          (change)="onFileChange($event)"
+          accept="image/*">
+
+        <div *ngIf="imageForm.get('image')?.invalid && imageForm.get('image')?.touched" class="text-danger mt-2">
+          Por favor selecciona una imagen válida.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success mt-3 w-100" [disabled]="imageForm.invalid">
+        Actualizar Imagen
+      </button>
+    </form>
+  </div>
+</div>
+
