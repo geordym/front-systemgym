@@ -24,6 +24,8 @@ export class ProfileComponent {
     }
 
 
+
+
     ngOnInit(): void {
         this.user = this.appService.user;
     }
